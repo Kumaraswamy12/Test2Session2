@@ -1,1 +1,97 @@
+gcc -g p1final.c
+/tmp/cci6pG12.o: In function `find_distance':
+/home/runner/Test2Session2/p1final.c:12: undefined reference to `sqrt'
+collect2: error: ld returned 1 exit status
+ gcc -g p1final.c -lm
+ ./a.out
+Enter the first point:
+1
+1
+Enter the second point:
+2
+2
+The distance between the points (1.000000 , 1.000000) and (2.000000 , 2.000000) is 1.414214 gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x90d: file p1final.c, line 19.
+(gdb) r
+Starting program: /home/runner/Test2Session2/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p1final.c:19
+19  {
+(gdb) n
+20    float x1,y1,x2,y2,dist=0.0;
+(gdb) n
+21    input(&x1,&y1,&x2,&y2);
+(gdb) s
+input (x1=0x7fffbe94ff64, y1=0x7fffbe94ff68, 
+    x2=0x7fffbe94ff6c, y2=0x7fffbe94ff70) at p1final.c:5
+5     printf("Enter the first point:\n");
+(gdb) n
+Enter the first point:
+6     scanf("%f%f",x1,y1);
+(gdb) n
+1
+1
+7     printf("Enter the second point:\n");
+(gdb) n
+Enter the second point:
+8     scanf("%f%f",x2,y2);
+(gdb) n
+
+2
+2
+9   }
+(gdb) p *x1
+$1 = 1
+(gdb) p *x2
+$2 = 2
+(gdb) p *y1
+$3 = 1
+(gdb) p *y2
+$4 = 2
+(gdb) n
+main () at p1final.c:22
+22    find_distance(x1,y1,x2,y2,&dist);
+(gdb) s
+find_distance (x1=1, y1=1, x2=2, y2=2, dist=0x7fffbe94ff74)
+    at p1final.c:12
+12     *dist=sqrt(((x2-x1)*(x2-x1))+((y2-y1)*(y2-y1)));
+(gdb) n
+13  }
+(gdb) p *dist
+$5 = 1.41421354
+(gdb) n
+main () at p1final.c:23
+23    output(x1,y1,x2,y2,dist);
+(gdb) s
+output (x1=1, y1=1, x2=2, y2=2, dist=1.41421354)
+    at p1final.c:16
+16    printf("The distance between the points (%f , %f) and (%f , %f) is %f",x1,y1,x2,y2,dist);
+(gdb) n
+17  }
+(gdb) n
+main () at p1final.c:24
+24    return 0;
+(gdb) n
+25  }
+(gdb) c
+Continuing.
+The distance between the points (1.000000 , 1.000000) and (2.000000 , 2.000000) is 1.414214[Inferior 1 (process 284) exited normally]
+(gdb) q
 
